@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- حالة التطبيق ---
     let currentTemplate = "template1";
     let isDragging = false;
+    let currentGender = "male";
     
     // قائمة أسماء المعايدة (كل اسم في بطاقة منفصلة)
     let names = [""];
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         template2: {
             fontFamily: "Almarai",
-            fontSize: 30,
+            fontSize: 90,
             xPercent: 50,
             yPercent: 74,
             color: "#451331",
@@ -285,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function syncControlsWithStyle() {
-        nameFontSelect.value = nameStyle.fontFamily;
+        if (nameFontSelect) nameFontSelect.value = nameStyle.fontFamily;
         nameSizeSlider.value = nameStyle.fontSize;
         
         nPosXSlider.value = nameStyle.xPercent;
@@ -342,12 +343,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // دالة رسم اسم مفرد على الكارت
     function drawSingleName(nameText) {
+        let prefix = currentGender === "male" ? "أخوكم " : "أختكم ";
         let displayText = nameText.trim();
         
         // إذا كان حقل الاسم فارغاً، نعرض نصاً توضيحياً لتسهيل السحب والضبط
         if (displayText === "") {
             displayText = activeNameIndex === 0 ? "أحمد" : `الاسم الإضافي ${activeNameIndex + 1}`;
         }
+        displayText = prefix + displayText;
         ctx.fillStyle = nameStyle.color;
 
         // ضبط إعدادات الخط
@@ -405,10 +408,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // مستمعي الأحداث لتحديث إعدادات التنسيق الموحد للخط
-    nameFontSelect.addEventListener("change", (e) => {
-        nameStyle.fontFamily = e.target.value;
-        drawCard();
-    });
+    if (nameFontSelect) {
+        nameFontSelect.addEventListener("change", (e) => {
+            nameStyle.fontFamily = e.target.value;
+            drawCard();
+        });
+    }
+
+    const genderSelect = document.getElementById("genderSelect");
+    if (genderSelect) {
+        genderSelect.addEventListener("change", (e) => {
+            currentGender = e.target.value;
+            drawCard();
+        });
+    }
 
     nameSizeSlider.addEventListener("input", (e) => {
         nameStyle.fontSize = parseInt(e.target.value);
