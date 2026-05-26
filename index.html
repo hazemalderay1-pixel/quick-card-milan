@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صانع بطاقات تهنئة عيد الأضحى المبارك - ميلان</title>
+    <!-- خطوط Google Fonts للتصميم المينيمالي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&family=Reem+Kufi:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide للأيقونات -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- ملف التنسيق -->
+    <link rel="stylesheet" href="style.css?v=1.0.33">
+</head>
+<body>
+    <div class="app-container">
+        <main class="app-main">
+            <!-- قسم التحكم والإدخال -->
+            <section class="control-panel animate-slide-right">
+                <!-- كارد التنقل والبراند العلوي -->
+                <div class="nav-card animate-fade-in">
+                    <div class="nav-brand">
+                        <img src="logo.svg?v=1.0.25" alt="ميلان" class="nav-logo">
+                    </div>
+                    <div class="nav-actions">
+                        <button id="btnShare" class="nav-btn btn-share" title="مشاركة الموقع">
+                            <i data-lucide="share-2"></i>
+                        </button>
+                        <button id="themeToggleBtn" class="nav-btn theme-toggle-btn" title="تبديل الوضع الليلي">
+                            <i data-lucide="moon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- رأس الصفحة المحدث ككارد رمادي غامق -->
+                <header class="header-card animate-fade-in">
+                    <h1>بطاقات تهنئة<br>عيد الأضحى</h1>
+                </header>
+
+                <div class="control-card">
+                    <h2 class="section-title"><i data-lucide="sliders"></i> خيارات التصميم</h2>
+                    
+                    <!-- أسماء متعددة على البطاقة -->
+                    <div class="names-section">
+                        <label class="names-section-title"><i data-lucide="user"></i> الاسم على البطاقة</label>
+                        <div id="namesContainer" class="names-container">
+                            <!-- سيتم توليد حقول إدخال الأسماء هنا برمجياً -->
+                        </div>
+                    </div>
+
+                    <!-- اختيار النموذج -->
+                    <div class="template-selector">
+                        <label><i data-lucide="image"></i> اختر نموذج البطاقة</label>
+                        <div class="templates-grid">
+                            <div class="template-option active" data-template="template1">
+                                <div class="option-image-wrapper">
+                                    <img src="template1.png?v=1.0.33" alt="النموذج الأول" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+1'">
+                                    <div class="selected-badge"><i data-lucide="check"></i></div>
+                                </div>
+                                <span>النموذج الأول</span>
+                            </div>
+                            <div class="template-option" data-template="template2">
+                                <div class="option-image-wrapper">
+                                    <img src="template2.png?v=1.0.33" alt="النموذج الثاني" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+2'">
+                                    <div class="selected-badge"><i data-lucide="check"></i></div>
+                                </div>
+                                <span>النموذج الثاني</span>
+                            </div>
+                            <div class="template-option" data-template="template3">
+                                <div class="option-image-wrapper">
+                                    <img src="template3.png?v=1.0.33" alt="النموذج الثالث" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+3'">
+                                    <div class="selected-badge"><i data-lucide="check"></i></div>
+                                </div>
+                                <span>النموذج الثالث</span>
+                            </div>
+                            <div class="template-option" data-template="template4">
+                                <div class="option-image-wrapper">
+                                    <img src="template4.png?v=1.0.33" alt="النموذج الرابع" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+4'">
+                                    <div class="selected-badge"><i data-lucide="check"></i></div>
+                                </div>
+                                <span>النموذج الرابع</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- خيارات الخط والموقع -->
+                    <div class="settings-accordion">
+                        <h3 class="accordion-title"><i data-lucide="sliders"></i> خيارات الخط والموضع <i data-lucide="chevron-down" class="arrow-icon"></i></h3>
+                        
+                        <div class="accordion-content">
+                            <!-- خصائص الخط -->
+                            <div class="properties-grid">
+                                <div class="select-group">
+                                    <label for="nameFont">نوع الخط</label>
+                                    <select id="nameFont" class="custom-select">
+                                        <option value="Cairo">Cairo (عصري)</option>
+                                        <option value="IBM Plex Sans Arabic" selected>IBM Plex Sans Arabic (أنيق)</option>
+                                        <option value="Amiri">Amiri (خط أميري فخم)</option>
+                                        <option value="Tajawal">Tajawal (ناعم)</option>
+                                        <option value="Reem Kufi">Reem Kufi (كوفي عريق)</option>
+                                    </select>
+                                </div>
+                                <div class="select-group">
+                                    <label for="nameSize">حجم الخط</label>
+                                    <input type="range" id="nameSize" min="10" max="120" value="30" class="custom-range">
+                                </div>
+                            </div>
+
+                            <!-- الموقع الأفقي والعمودي للاسم -->
+                            <div class="range-controls-wrapper">
+                                <div class="sub-range-group">
+                                    <div class="range-labels">
+                                        <span>الموقع الأفقي (X)</span>
+                                        <span id="nPosXVal">50%</span>
+                                    </div>
+                                    <input type="range" id="nPosX" min="5" max="95" value="50">
+                                </div>
+                                <div class="sub-range-group">
+                                    <div class="range-labels">
+                                        <span>الموقع الرأسي (Y)</span>
+                                        <span id="nPosYVal">50%</span>
+                                    </div>
+                                    <input type="range" id="nPosY" min="10" max="95" value="50">
+                                </div>
+                            </div>
+
+                             <!-- لون الاسم -->
+                            <div class="color-picker-section">
+                                <span>لون خط الاسم:</span>
+                                <div class="colors-grid" id="nameColors">
+                                    <button class="color-btn active" data-color="#451331" style="background-color: #451331;"></button>
+                                    <button class="color-btn" data-color="#FFFFFF" style="background-color: #FFFFFF; border: 1px solid #ccc;"></button>
+                                    <button class="color-btn" data-color="#D4AF37" style="background-color: #D4AF37;"></button>
+                                    <button class="color-btn" data-color="#000000" style="background-color: #000000; border: 1px solid #fff;"></button>
+                                    <input type="color" id="nCustomColor" value="#451331">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- أزرار الإجراءات للتحكم -->
+                    <div class="action-buttons">
+                        <button id="btnPreview" class="btn btn-secondary">
+                            <i data-lucide="eye"></i> عرض ومعاينة
+                        </button>
+                        <button id="btnDownload" class="btn btn-primary">
+                            <i data-lucide="download"></i> تحميل البطاقة
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم المعاينة -->
+            <section class="preview-panel animate-slide-left">
+                <div class="canvas-container">
+                    <!-- الـ Canvas الذي سيتم الرسم عليه -->
+                    <canvas id="cardCanvas" width="1080" height="1080"></canvas>
+                </div>
+                <!-- إشعار السحب والإفلات -->
+                <div class="drag-hint">
+                    <i data-lucide="move" class="animate-pulse"></i> اسحب الاسم مباشرة لتغيير مكانه على البطاقة
+                </div>
+            </section>
+        </main>
+
+        <!-- نافذة المعاينة الكبيرة (Modal) -->
+        <div id="previewModal" class="modal">
+            <div class="modal-content control-card">
+                <span class="close-modal">&times;</span>
+                <h3>جاهزة للتحميل والتنزيل</h3>
+                <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1.5rem;">انقر على تحميل الآن لحفظ الصورة بدقة عالية</p>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="البطاقة النهائية">
+                </div>
+                <div class="modal-actions">
+                    <button id="modalBtnDownload" class="btn btn-primary">
+                        <i data-lucide="download"></i> تحميل الآن
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <p>كل عام وأنتم بخير &copy; 2026</p>
+            <p style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--text-light); opacity: 0.85;">صنع بحب ❤️ بواسطة ميلان للدعاية والإعلان</p>
+        </footer>
+    </div>
+
+    <!-- ملف التفاعل البرمجي -->
+    <script src="script.js?v=1.0.33"></script>
+</body>
+</html>
