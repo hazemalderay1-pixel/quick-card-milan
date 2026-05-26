@@ -48,11 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const templateSettings = {
         template1: {
             fontFamily: "IBM Plex Sans Arabic",
-            fontSize: 30,
-            xPercent: 50,
-            yPercent: 50,
-            color: "#451331",
-            fontWeight: "bold"
+            fontSize: 80,
+            xPercent: 90,
+            yPercent: 40,
+            color: "#FFFFFF",
+            fontWeight: "bold",
+            textAlign: "right"
         },
         template2: {
             fontFamily: "IBM Plex Sans Arabic",
@@ -60,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
             xPercent: 50,
             yPercent: 50,
             color: "#451331",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            textAlign: "center"
         },
         template3: {
             fontFamily: "IBM Plex Sans Arabic",
@@ -68,7 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
             xPercent: 50,
             yPercent: 50,
             color: "#451331",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            textAlign: "center"
         },
         template4: {
             fontFamily: "IBM Plex Sans Arabic",
@@ -76,7 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
             xPercent: 50,
             yPercent: 50,
             color: "#451331",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            textAlign: "center"
         },
         template5: {
             fontFamily: "IBM Plex Sans Arabic",
@@ -84,7 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
             xPercent: 50,
             yPercent: 50,
             color: "#451331",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            textAlign: "center"
         },
         template6: {
             fontFamily: "IBM Plex Sans Arabic",
@@ -92,7 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
             xPercent: 50,
             yPercent: 50,
             color: "#451331",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            textAlign: "center"
         }
     };
 
@@ -104,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         yPercent: templateSettings.template1.yPercent,
         color: templateSettings.template1.color,
         fontWeight: templateSettings.template1.fontWeight,
+        textAlign: templateSettings.template1.textAlign || "center",
         width: 0,
         height: templateSettings.template1.fontSize
     };
@@ -141,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nameStyle.yPercent = settings.yPercent;
         nameStyle.color = settings.color;
         nameStyle.fontWeight = settings.fontWeight;
+        nameStyle.textAlign = settings.textAlign || "center";
         
         // مزامنة عناصر التحكم بالواجهة مع الإعدادات الجديدة
         syncControlsWithStyle();
@@ -346,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let activeFontSize = nameStyle.fontSize;
         const weight = nameStyle.fontWeight || "500";
         ctx.font = `${weight} ${activeFontSize}px "${nameStyle.fontFamily}", Cairo, sans-serif`;
-        ctx.textAlign = "center";
+        ctx.textAlign = nameStyle.textAlign || "center";
         ctx.textBaseline = "middle";
 
         // حساب الحجم التلقائي للخط لمنع التجاوز عن أبعاد الكارت (1080)
@@ -461,12 +469,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const y = (nameStyle.yPercent / 100) * cardCanvas.height;
         const padding = 40; 
 
-        return (
-            clickX >= x - (nameStyle.width || 100) / 2 - padding &&
-            clickX <= x + (nameStyle.width || 100) / 2 + padding &&
-            clickY >= y - (nameStyle.height || 40) / 2 - padding &&
-            clickY <= y + (nameStyle.height || 40) / 2 + padding
-        );
+        if (nameStyle.textAlign === "right") {
+            return (
+                clickX >= x - (nameStyle.width || 100) - padding &&
+                clickX <= x + padding &&
+                clickY >= y - (nameStyle.height || 40) / 2 - padding &&
+                clickY <= y + (nameStyle.height || 40) / 2 + padding
+            );
+        } else {
+            return (
+                clickX >= x - (nameStyle.width || 100) / 2 - padding &&
+                clickX <= x + (nameStyle.width || 100) / 2 + padding &&
+                clickY >= y - (nameStyle.height || 40) / 2 - padding &&
+                clickY <= y + (nameStyle.height || 40) / 2 + padding
+            );
+        }
     }
 
     // بدء السحب
