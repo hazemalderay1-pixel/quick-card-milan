@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
             textAlign: "center"
         },
         template3: {
-            fontFamily: "IBM Plex Sans Arabic",
-            fontSize: 30,
+            fontFamily: "Almarai",
+            fontSize: 95,
             xPercent: 50,
-            yPercent: 50,
-            color: "#451331",
+            yPercent: 85,
+            color: "#FFFFFF",
             fontWeight: "bold",
             textAlign: "center"
         },
