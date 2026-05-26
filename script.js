@@ -75,10 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
             textAlign: "center"
         },
         template4: {
-            fontFamily: "IBM Plex Sans Arabic",
-            fontSize: 30,
+            fontFamily: "Cairo",
+            fontSize: 66,
             xPercent: 50,
-            yPercent: 50,
+            yPercent: 93,
             color: "#451331",
             fontWeight: "bold",
             textAlign: "center"
@@ -397,7 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // رسم الاسم على الكارت (النموذج 2 يرسم سطرين، النماذج الأخرى ترسم سطر واحد)
         if (currentTemplate === "template2") {
             const prefix = currentGender === "male" ? "أخوكم" : "أختكم";
-            const lineSpacing = activeFontSize * 1.1; // تباعد الأسطر الرأسي
+            const lineSpacing = activeFontSize * 1.7; // تباعد الأسطر الرأسي ليكون كسطر فارغ
             ctx.fillText(prefix, x, y - lineSpacing / 2);
             ctx.fillText(displayText, x, y + lineSpacing / 2);
             
