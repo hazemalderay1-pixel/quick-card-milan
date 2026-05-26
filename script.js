@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const templateSettings = {
         template1: {
             fontFamily: "IBM Plex Sans Arabic",
-            fontSize: 80,
-            xPercent: 90,
+            fontSize: 90,
+            xPercent: 87,
             yPercent: 40,
             color: "#FFFFFF",
             fontWeight: "bold",
