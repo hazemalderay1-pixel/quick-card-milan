@@ -77,6 +77,22 @@ document.addEventListener("DOMContentLoaded", () => {
             yPercent: 50,
             color: "#451331",
             fontWeight: "bold"
+        },
+        template5: {
+            fontFamily: "IBM Plex Sans Arabic",
+            fontSize: 30,
+            xPercent: 50,
+            yPercent: 50,
+            color: "#451331",
+            fontWeight: "bold"
+        },
+        template6: {
+            fontFamily: "IBM Plex Sans Arabic",
+            fontSize: 30,
+            xPercent: 50,
+            yPercent: 50,
+            color: "#451331",
+            fontWeight: "bold"
         }
     };
 
@@ -97,17 +113,23 @@ document.addEventListener("DOMContentLoaded", () => {
         template1: new Image(),
         template2: new Image(),
         template3: new Image(),
-        template4: new Image()
+        template4: new Image(),
+        template5: new Image(),
+        template6: new Image()
     };
     images.template1.src = "template1.png?v=1.0.33";
     images.template2.src = "template2.png?v=1.0.33";
     images.template3.src = "template3.png?v=1.0.33";
     images.template4.src = "template4.png?v=1.0.33";
+    images.template5.src = "template5.png?v=1.0.33";
+    images.template6.src = "template6.png?v=1.0.33";
 
     images.template1.onload = () => { if (currentTemplate === "template1") drawCard(); };
     images.template2.onload = () => { if (currentTemplate === "template2") drawCard(); };
     images.template3.onload = () => { if (currentTemplate === "template3") drawCard(); };
     images.template4.onload = () => { if (currentTemplate === "template4") drawCard(); };
+    images.template5.onload = () => { if (currentTemplate === "template5") drawCard(); };
+    images.template6.onload = () => { if (currentTemplate === "template6") drawCard(); };
 
     function applyTemplateSettings(templateId) {
         const settings = templateSettings[templateId];
