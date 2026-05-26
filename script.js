@@ -56,10 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
             textAlign: "right"
         },
         template2: {
-            fontFamily: "IBM Plex Sans Arabic",
+            fontFamily: "Almarai",
             fontSize: 30,
             xPercent: 50,
-            yPercent: 50,
+            yPercent: 74,
             color: "#451331",
             fontWeight: "bold",
             textAlign: "center"
