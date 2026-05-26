@@ -3,15 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صانع بطاقات تهنئة عيد الأضحى المبارك - ميلان</title>
-    <!-- خطوط Google Fonts للتصميم المينيمالي -->
+    <title>صانع بطاقات تهنئة - ميلان</title>
+    <!-- Google Fonts: Cairo + Al Marai -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&family=Reem+Kufi:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide للأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Almarai:wght@300;400;700;800&family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- ملف التنسيق -->
-    <link rel="stylesheet" href="style.css?v=1.0.33">
+    <link rel="stylesheet" href="style.css?v=2.0.0">
+    <style>
+        /* خيار الجنس لنموذج 2 */
+        .gender-section {
+            display: none;
+            margin-top: 0.75rem;
+            gap: 0.5rem;
+        }
+        .gender-section.visible {
+            display: flex;
+        }
+        .gender-btn {
+            flex: 1;
+            padding: 0.55rem 0.75rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+        .gender-btn.active {
+            background: #451331;
+            color: #fff;
+            border-color: #451331;
+        }
+        .gender-btn:hover:not(.active) {
+            border-color: #451331;
+            color: #451331;
+        }
+        .gender-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -21,7 +59,7 @@
                 <!-- كارد التنقل والبراند العلوي -->
                 <div class="nav-card animate-fade-in">
                     <div class="nav-brand">
-                        <img src="logo.svg?v=1.0.25" alt="ميلان" class="nav-logo">
+                        <img src="logo.svg?v=2.0.0" alt="ميلان" class="nav-logo">
                     </div>
                     <div class="nav-actions">
                         <button id="btnShare" class="nav-btn btn-share" title="مشاركة الموقع">
@@ -33,15 +71,15 @@
                     </div>
                 </div>
 
-                <!-- رأس الصفحة المحدث ككارد رمادي غامق -->
+                <!-- رأس الصفحة -->
                 <header class="header-card animate-fade-in">
-                    <h1>بطاقات تهنئة<br>عيد الأضحى</h1>
+                    <h1>بطاقات تهنئة<br>ميلان</h1>
                 </header>
 
                 <div class="control-card">
                     <h2 class="section-title"><i data-lucide="sliders"></i> خيارات التصميم</h2>
-                    
-                    <!-- أسماء متعددة على البطاقة -->
+
+                    <!-- أسماء متعددة -->
                     <div class="names-section">
                         <label class="names-section-title"><i data-lucide="user"></i> الاسم على البطاقة</label>
                         <div id="namesContainer" class="names-container">
@@ -49,76 +87,48 @@
                         </div>
                     </div>
 
-                    <!-- اختيار النموذج -->
-                    <div class="template-selector">
-                        <label><i data-lucide="image"></i> اختر نموذج البطاقة</label>
-                        <div class="templates-grid">
-                            <div class="template-option active" data-template="template1">
-                                <div class="option-image-wrapper">
-                                    <img src="template1.png?v=1.0.33" alt="النموذج الأول" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+1'">
-                                    <div class="selected-badge"><i data-lucide="check"></i></div>
-                                </div>
-                                <span>النموذج الأول</span>
-                            </div>
-                            <div class="template-option" data-template="template2">
-                                <div class="option-image-wrapper">
-                                    <img src="template2.png?v=1.0.33" alt="النموذج الثاني" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+2'">
-                                    <div class="selected-badge"><i data-lucide="check"></i></div>
-                                </div>
-                                <span>النموذج الثاني</span>
-                            </div>
-                            <div class="template-option" data-template="template3">
-                                <div class="option-image-wrapper">
-                                    <img src="template3.png?v=1.0.33" alt="النموذج الثالث" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+3'">
-                                    <div class="selected-badge"><i data-lucide="check"></i></div>
-                                </div>
-                                <span>النموذج الثالث</span>
-                            </div>
-                            <div class="template-option" data-template="template4">
-                                <div class="option-image-wrapper">
-                                    <img src="template4.png?v=1.0.33" alt="النموذج الرابع" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+4'">
-                                    <div class="selected-badge"><i data-lucide="check"></i></div>
-                                </div>
-                                <span>النموذج الرابع</span>
-                            </div>
-                            <div class="template-option" data-template="template5">
-                                <div class="option-image-wrapper">
-                                    <img src="template5.png?v=1.0.33" alt="النموذج الخامس" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+5'">
-                                    <div class="selected-badge"><i data-lucide="check"></i></div>
-                                </div>
-                                <span>النموذج الخامس</span>
-                            </div>
-                            <div class="template-option" data-template="template6">
-                                <div class="option-image-wrapper">
-                                    <img src="template6.png?v=1.0.33" alt="النموذج السادس" onerror="this.src='https://placehold.co/300x300/ffffff/000000?text=Template+6'">
-                                    <div class="selected-badge"><i data-lucide="check"></i></div>
-                                </div>
-                                <span>النموذج السادس</span>
+                    <!-- خيار الجنس (يظهر فقط في النموذج 2) -->
+                    <div id="genderSection" class="gender-section">
+                        <div style="width:100%;">
+                            <span class="gender-label">نوع المعايدة:</span>
+                            <div style="display:flex; gap:0.5rem;">
+                                <button class="gender-btn active" id="genderMale" data-gender="male">ذكر (اخوكم)</button>
+                                <button class="gender-btn" id="genderFemale" data-gender="female">أنثى (اختكم)</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- خيارات الخط والموقع -->
+                    <!-- اختيار النموذج -->
+                    <div class="template-selector">
+                        <label><i data-lucide="image"></i> اختر نموذج البطاقة</label>
+                        <div class="templates-grid" id="templatesGrid">
+                            <!-- سيتم توليد النماذج هنا -->
+                        </div>
+                    </div>
+
+                    <!-- خيارات الخط والموضع -->
                     <div class="settings-accordion">
                         <h3 class="accordion-title"><i data-lucide="sliders"></i> خيارات الخط والموضع <i data-lucide="chevron-down" class="arrow-icon"></i></h3>
-                        
+
                         <div class="accordion-content">
                             <!-- خصائص الخط -->
                             <div class="properties-grid">
-                                <div class="select-group" id="genderSelectGroup" style="display: none;">
-                                    <label for="genderSelect">الصيغة (ذكر / أنثى)</label>
-                                    <select id="genderSelect" class="custom-select">
-                                        <option value="male" selected>ذكر (أخوكم)</option>
-                                        <option value="female">أنثى (أختكم)</option>
+                                <div class="select-group">
+                                    <label for="nameFont">نوع الخط</label>
+                                    <select id="nameFont" class="custom-select">
+                                        <option value="Almarai">المراعي (Almarai)</option>
+                                        <option value="Cairo">Cairo (عصري)</option>
+                                        <option value="Amiri">Amiri (خط أميري فخم)</option>
+                                        <option value="Tajawal">Tajawal (ناعم)</option>
                                     </select>
                                 </div>
                                 <div class="select-group">
                                     <label for="nameSize">حجم الخط</label>
-                                    <input type="range" id="nameSize" min="10" max="120" value="90" class="custom-range">
+                                    <input type="range" id="nameSize" min="20" max="130" value="90" class="custom-range">
                                 </div>
                             </div>
 
-                            <!-- الموقع الأفقي والعمودي للاسم -->
+                            <!-- الموقع الأفقي والعمودي -->
                             <div class="range-controls-wrapper">
                                 <div class="sub-range-group">
                                     <div class="range-labels">
@@ -132,16 +142,16 @@
                                         <span>الموقع الرأسي (Y)</span>
                                         <span id="nPosYVal">40%</span>
                                     </div>
-                                    <input type="range" id="nPosY" min="10" max="95" value="40">
+                                    <input type="range" id="nPosY" min="5" max="95" value="40">
                                 </div>
                             </div>
 
-                             <!-- لون الاسم -->
+                            <!-- لون الاسم -->
                             <div class="color-picker-section">
                                 <span>لون خط الاسم:</span>
                                 <div class="colors-grid" id="nameColors">
-                                    <button class="color-btn" data-color="#451331" style="background-color: #451331;"></button>
                                     <button class="color-btn active" data-color="#FFFFFF" style="background-color: #FFFFFF; border: 1px solid #ccc;"></button>
+                                    <button class="color-btn" data-color="#451331" style="background-color: #451331;"></button>
                                     <button class="color-btn" data-color="#D4AF37" style="background-color: #D4AF37;"></button>
                                     <button class="color-btn" data-color="#000000" style="background-color: #000000; border: 1px solid #fff;"></button>
                                     <input type="color" id="nCustomColor" value="#FFFFFF">
@@ -150,7 +160,7 @@
                         </div>
                     </div>
 
-                    <!-- أزرار الإجراءات للتحكم -->
+                    <!-- أزرار الإجراءات -->
                     <div class="action-buttons">
                         <button id="btnPreview" class="btn btn-secondary">
                             <i data-lucide="eye"></i> عرض ومعاينة
@@ -165,10 +175,8 @@
             <!-- قسم المعاينة -->
             <section class="preview-panel animate-slide-left">
                 <div class="canvas-container">
-                    <!-- الـ Canvas الذي سيتم الرسم عليه -->
                     <canvas id="cardCanvas" width="1080" height="1080"></canvas>
                 </div>
-                <!-- إشعار السحب والإفلات -->
                 <div class="drag-hint">
                     <i data-lucide="move" class="animate-pulse"></i> اسحب الاسم مباشرة لتغيير مكانه على البطاقة
                 </div>
@@ -194,11 +202,9 @@
 
         <footer class="app-footer">
             <p>كل عام وأنتم بخير &copy; 2026</p>
-            <p style="margin-top: 0.4rem; font-size: 0.75rem; color: var(--text-light); opacity: 0.85;">صنع بحب ❤️ بواسطة ميلان للدعاية والإعلان</p>
         </footer>
     </div>
 
-    <!-- ملف التفاعل البرمجي -->
-    <script src="script.js?v=1.0.33"></script>
+    <script src="script.js?v=2.0.0"></script>
 </body>
 </html>

@@ -589,6 +589,7 @@ body.dark-mode .custom-select:focus {
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 1/1;
     cursor: grab;
     user-select: none;
 }
@@ -712,18 +713,14 @@ body.dark-mode .custom-select:focus {
     overflow: hidden;
     border: 1px solid var(--border-color);
     margin-bottom: 1.5rem;
+    aspect-ratio: 1/1;
     background-color: var(--bg-main);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .modal-body img {
     width: 100%;
-    height: auto;
-    max-height: 60vh;
+    height: 100%;
     object-fit: contain;
-    display: block;
 }
 
 .modal-actions .btn {
@@ -914,7 +911,7 @@ body.dark-mode .btn-delete-name:hover {
 }
 
 .nav-logo {
-    height: 44px; /* تم تعديل الارتفاع ليكون بارتفاع 44px */
+    height: 44px; /* تم زيادة حجم الشعار بنسبة 15% إضافية من 38px */
     width: auto;
     display: block;
 }
@@ -957,7 +954,7 @@ body.dark-mode .nav-logo {
         margin-bottom: 1rem;
     }
     .nav-logo {
-        height: 35px; /* تم تعديل الارتفاع ليكون بارتفاع 35px في الموبايل */
+        height: 35px; /* تم زيادة حجم الشعار بنسبة 15% إضافية في الموبايل من 30px */
     }
     .nav-btn {
         width: 45px; /* كبرنا الزر بنسبة 25% في الموبايل */
