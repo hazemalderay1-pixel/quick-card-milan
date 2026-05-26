@@ -151,6 +151,16 @@ document.addEventListener("DOMContentLoaded", () => {
         nameStyle.fontWeight = settings.fontWeight;
         nameStyle.textAlign = settings.textAlign || "center";
         
+        // إظهار/إخفاء خيار الصيغة (ذكر/أنثى) للنموذج الثاني فقط
+        const genderSelectGroup = document.getElementById("genderSelectGroup");
+        if (genderSelectGroup) {
+            if (templateId === "template2") {
+                genderSelectGroup.style.display = "";
+            } else {
+                genderSelectGroup.style.display = "none";
+            }
+        }
+        
         // مزامنة عناصر التحكم بالواجهة مع الإعدادات الجديدة
         syncControlsWithStyle();
     }
@@ -343,14 +353,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // دالة رسم اسم مفرد على الكارت
     function drawSingleName(nameText) {
-        let prefix = currentGender === "male" ? "أخوكم " : "أختكم ";
         let displayText = nameText.trim();
         
         // إذا كان حقل الاسم فارغاً، نعرض نصاً توضيحياً لتسهيل السحب والضبط
         if (displayText === "") {
             displayText = activeNameIndex === 0 ? "أحمد" : `الاسم الإضافي ${activeNameIndex + 1}`;
         }
-        displayText = prefix + displayText;
+        
         ctx.fillStyle = nameStyle.color;
 
         // ضبط إعدادات الخط
@@ -362,30 +371,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // حساب الحجم التلقائي للخط لمنع التجاوز عن أبعاد الكارت (1080)
         let measuredWidth = ctx.measureText(displayText).width;
+        if (currentTemplate === "template2") {
+            const prefix = currentGender === "male" ? "أخوكم" : "أختكم";
+            const prefixWidth = ctx.measureText(prefix).width;
+            measuredWidth = Math.max(measuredWidth, prefixWidth);
+        }
+        
         const maxWidth = cardCanvas.width * 0.9; // حد أقصى 90% من عرض الكارد
         
         while (measuredWidth > maxWidth && activeFontSize > 10) {
             activeFontSize -= 2;
             ctx.font = `${weight} ${activeFontSize}px "${nameStyle.fontFamily}", Cairo, sans-serif`;
             measuredWidth = ctx.measureText(displayText).width;
+            if (currentTemplate === "template2") {
+                const prefix = currentGender === "male" ? "أخوكم" : "أختكم";
+                const prefixWidth = ctx.measureText(prefix).width;
+                measuredWidth = Math.max(measuredWidth, prefixWidth);
+            }
         }
 
         // حساب الإحداثيات الفعلية
         const x = (nameStyle.xPercent / 100) * cardCanvas.width;
         const y = (nameStyle.yPercent / 100) * cardCanvas.height;
 
-        // رسم الاسم على الكارت
-        ctx.fillText(displayText, x, y);
+        // رسم الاسم على الكارت (النموذج 2 يرسم سطرين، النماذج الأخرى ترسم سطر واحد)
+        if (currentTemplate === "template2") {
+            const prefix = currentGender === "male" ? "أخوكم" : "أختكم";
+            const lineSpacing = activeFontSize * 1.1; // تباعد الأسطر الرأسي
+            ctx.fillText(prefix, x, y - lineSpacing / 2);
+            ctx.fillText(displayText, x, y + lineSpacing / 2);
+            
+            // حفظ الأبعاد الفعلية للاسم لمعاينة السحب واللمس
+            nameStyle.width = measuredWidth;
+            nameStyle.height = lineSpacing * 1.8;
+        } else {
+            ctx.fillText(displayText, x, y);
+            
+            // حفظ الأبعاد الفعلية للاسم لمعاينة السحب واللمس
+            nameStyle.width = measuredWidth;
+            nameStyle.height = activeFontSize;
+        }
 
         // إعادة تعيين الظل
         ctx.shadowColor = "transparent";
         ctx.shadowBlur = 0;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
-
-        // حفظ الأبعاد الفعلية للاسم لمعاينة السحب واللمس
-        nameStyle.width = measuredWidth;
-        nameStyle.height = activeFontSize;
     }
 
     // تفعيل فتح وإغلاق الأكورديون للخيارات المتقدمة
